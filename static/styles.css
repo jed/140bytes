@@ -1,0 +1,14 @@
+body { background: #888 }
+.tweet {
+  background: #fff;
+  padding: 20px;
+  border-radius: 50px;
+  margin:0 0 20px 0;
+}
+.gravatar {
+  width: 30px;
+  height: 30px;          
+}
+.gist-meta {
+  display: none !important;
+}

@@ -1,0 +1,458 @@
+<!doctype html> 
+<html>
+<head>
+<title>140byt.es</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+<meta name="MobileOptimized" content="320">
+<meta name="HandHeldFriendly" content="true">
+<style>
+html, body { background:#83b8d3; font-family:sans-serif; color:#333; margin:0; padding:0; width: 100%; }
+a { color:#001133; }
+h1 { position: relative; font-size: 24px; margin: 0; padding: 10px 15px; background: #333333; border-top: 5px solid #6699bb; border-bottom: 5px solid #6699bb; height: 30px; color: #ffffff; }
+h2 { color:#ffffff; text-shadow:#357 0px 0px 4px; letter-spacing: 0.05em; }
+
+#main { width: 68%; overflow: hidden; float: left; margin-bottom: 1em; }
+#extras { width: 25%; overflow: hidden; float: right; margin-bottom: 1em; }
+
+#auth { position: absolute; right: 15px; top: 19px; }
+#auth a { text-decoration: none; }
+#auth button { border: 2px solid #6699bb; background: #0077aa; color: white; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; box-shadow: #000000 0px 0px 5px; -moz-box-shadow: #000000 0px 0px 5px; -webkit-box-shadow: #000000 0px 0px 5px; }
+
+#golfers { padding-left: 15px; position: relative; overflow: hidden; }
+#golfers ol { list-style: none; padding: 0; margin: 0; overflow: hidden; height: 200px; }
+#golfers.open ol { height: auto; }
+#golfers li { float: left; width: 80px; height: 100px; font-size:0.75em; line-height: 1.1em; text-align: right; margin: 0 0.5em; }
+#golfers li img { width: 80px; height: 80px; display: block; background: #93c8e3; }
+#golfers li a { float: left; max-width: 60px; overflow: hidden; }
+
+#welcome, #gists, #start, #footer { padding-left: 15px; position: relative; clear: left; }
+#footer { clear: both; margin-top: 10px; padding: 8px 15px; width: auto; text-align: center; border-top: 2px solid #3399bb; border-bottom: 5px solid #3399bb; background: #333; color: #ddd; font-size: 90%; }
+#footer a { color: #fff; }
+
+#keywords { position: relative; overflow: hidden; }
+#keywords ol { overflow: hidden; list-style: none; margin: 0; padding: 0; }
+#keywords li { display: none; }
+#keywords.open li { display: block; }
+#keywords .kw-1 { font-size: 135%; display: block; }
+#keywords .kw-2, .kw-3 { font-size: 125%; display: block; }
+#keywords .kw-4, #keywords .kw-5, #keywords .kw-6 { font-size: 115%; display: block; }
+#keywords .kw-7, #keywords .kw-8, #keywords .kw-9, #keywords .kw-10, #keywords .kw-11, #keywords .kw-12, #keywords .kw-13, #keywords .kw-14, #keywords .kw-15, #keywords .kw-16, #keywords .kw-17, #keywords .kw-18, #keywords .kw-19, #keywords .kw-20 { display: block; }
+
+#links { position: relative; overflow: hidden; clear: right; }
+
+span.open, span.close { clear: both; float: right; margin-right: 15px; cursor: pointer; color: #000; }
+span.close, .open span.open { display: none; }
+span.open, .open span.close { display: inline; }
+span.open:before { content: "▼ "; color: #fff; font-size: 80%; }
+span.close:before { content: "▲ "; color: #fff; font-size: 80%; }
+
+#user, #keyword { padding: 0 15px; }
+.back { float: right; text-decoration: none; }
+.back:before { content: "◀ "; color: #fff; font-size: 80%; }
+
+.entries { margin: 0; padding: 0; list-style: none; }
+.entries > li { border: 1px solid #fff; background: #ddd; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; overflow-y: hidden; font-size: 90%; margin: 0 0 2em; max-width: 750px; }
+.entries h3 { font-size: inherit; margin: 0 0 5px 0; padding: 5px; background: #fff; font-weight: 400; }
+.entries .name { font-weight: 700; text-decoration: none; }
+.entries .author { float: right; }
+.entries p { margin: 0; padding: 0 5px 0.1em; float: left; }
+.entries .keywords { float: right; }
+.entries .views { clear: both; list-style: none; margin: 0; padding: 0; }
+.entries .views li { background: #ccc; border:1px solid; border-color: #bbb #bbb #fff #bbb; color: #333; cursor: pointer; float: left; font-size: 90%; margin: 5px 5px -1px; padding: 2px 10px; border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; position: relative; z-index: 1; }
+.entries .views li.active { background: #eee; border-color: #fff #fff #eee #fff; font-weight: 700; color: #000; cursor: default; z-index: 9; }
+.entries .panes { list-style: none; margin: 0; padding: 0; }
+.entries .panes li { margin: 0; padding: 0; display: none; clear: left; float: none; }
+.entries .panes li.active { display: block; overflow-y: hidden; }
+.entries .panes p.unavailable, .entries .panes div.md { float: none; clear: both; color: #666; padding: 5px; background: #eee; margin: 0; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; position: relative; z-index: 5; line-height: 5em; text-align: center; }
+.entries .panes iframe { background: #eee; border: 0; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; width: 100%; }
+.entries pre { clear: both; color: #333; font-size: 130%; overflow-x: auto; padding: 5px; background: #eee; margin: 0; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; position: relative; z-index: 5; }
+.android .entries pre, .iphone .entries pre, .opera .entries pre, .iemobile .entries pre, .netfront .entries pre .blackberry .entries pre { white-space: pre-wrap; display: block; overflow: visible; width: auto; word-wrap: break-word; }
+.entries .actions { list-style: none; margin: 0; padding: 0; text-align: center; }
+.entries .actions li { display: inline; padding: 0 5px; }
+
+/* syntax highlighting */
+/* regexp */
+.f-1, .f-1 * {color:#092;}
+/* string */
+.f1,.f1 * {color:#d14;}
+/* comment */
+.f2,.f2 * {color:#999;font-style:italic;}
+/* keyword */
+.f3,.f3 * {color:#000;font-weight: 700;}
+/* predefined object */
+.f4,.f4 * {color:#08B;}
+/* number */
+.f5,.f5 * {color:#099;}
+/* bracket, operator */
+.f6 {color:#000;}
+
+/* loading */
+#loading { display: none; text-align: center; }
+.loading #loading { display: block; }
+
+/* different page widths */
+@media all and (max-width: 640px) {
+h1 { height: 60px; }
+h2 { font-size: 110%; }
+#main, #extras { width: 100%; float: none; }
+#auth { margin-top: 30px; }
+#golfers, #welcome, #gists, #start, #keywords, #links { width: auto; margin: 0 auto; padding: 0 4%; }
+#keywords ol { font-size: 80%; margin-bottom: 5px; }
+#keywords .kw-1, #keywords .kw-2, #keywords .kw-3, #keywords .kw-4, #keywords .kw-5, #keywords .kw-6, #keywords .kw-7, #keywords .kw-8, #keywords .kw-9, #keywords .kw-10, #keywords .kw-11, #keywords .kw-12, #keywords .kw-13, #keywords .kw-14, #keywords .kw-15, #keywords .kw-16, #keywords .kw-17, #keywords .kw-18, #keywords .kw-19, #keywords .kw-20 { display: inline; }
+#keywords li:before { content: ' | '; color: #fff; }
+#keywords li:first-child:before, #keywords.open li:before { content: ''; }
+}
+@media all and (max-width: 320px) {
+#keywords .kw-11, #keywords .kw-12, #keywords .kw-13, #keywords .kw-14, #keywords .kw-15, #keywords .kw-16, #keywords .kw-17, #keywords .kw-18, #keywords .kw-19, #keywords .kw-20 { display: none; }
+}
+@media all and (min-width: 320px) { .entries pre { width: 300px; font-size: 100%; } }
+@media all and (min-width: 480px) { .entries pre { width: 460px; } }
+@media all and (min-width: 640px) { .entries pre { width: 620px; font-size: 120%; } }
+@media all and (min-width: 800px) { .entries pre { width: auto; font-size: 130%;  } }
+@media all and (min-width: 1440px) {
+.entries { -moz-column-count: 2; -webkit-column-count: 2; column-count: 2; column-gap: 2%; -moz-column-gap: 2%; -webkit-column-gap: 2%; }
+}
+</style>
+    <!--[if lt IE 9]><script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script><![endif]-->
+</head>
+<body>
+    <script type="text/javascript">navigator.userAgent.toLowerCase().replace(/android|iphone|opera(?=\s*(mini|mobile))|iemobile|netfront|blackberry/,function(b){document.body.className+=' '+b})</script>
+    <script id="layout" type="text/template">
+        <h1><a href="/"><canvas id="logo">140byt.es</canvas></a></h1>
+        <div id="auth"></div>
+        <div id="loading">Loading...</div>
+        #{this}
+        <div id="footer">140byt.es is brought to you by <a href="/users/jed">Jed Schmidt</a> (with a little help from <a href="/users/atk">Alex Kloss</a>).</div>
+    </script>
+
+    <script id="login" type="text/template">
+      <a href="/login"><button>Log in with GitHub</button></a>
+    </script>
+
+    <script id="logout" type="text/template">
+      Logged in as <b>#{this.id}</b> | <a href="/logout"><button>Log out</button></a>
+    </script>
+  
+    <script id="home" type="text/template">
+     <div id="main">
+       <div id="welcome">
+         <h2>Welcome to 140byt.es</h2>
+         <p>140byt.es is a tweet-sized, fork-to-play, community-curated collection of JavaScript</p>
+       </div>
+       <div id="start">
+          <h2>How to play</h2>
+          <ol>
+            <li>Go to the <a href="https://gist.github.com/962807">master gist</a> page, and click the <img src="https://d3nwyuy0nl342s.cloudfront.net/images/gist/buttons/fork_button.png"> button.
+            <li>Modify all the files to according to the rules in the gist.</li>
+            <li>Save your entry and tweet it up!</li>
+          </ol>
+          <p>Keep in mind that thanks to the awesome sensibilities of the GitHub team, gists are just repos. So feel free to clone yours and work locally for a more comfortable environment, and to allow commit messages.</p>
+       </div>
+       <div id="gists">
+          <h2>Examples</h2>
+          <ul class="entries">
+          #{this.entries.map(templates.entryItem).join("")}
+          </ul>
+       </div>
+       <div id="golfers">#{templates.userList(this.users)}</div>
+     </div>
+     <div id="extras">
+       <div id="keywords">
+       #{templates.keywordList(this.keywords)}
+       </div>
+       <div id="links">
+         <h2>Links</h2>
+         <ul>
+           <li><a href="https://gist.github.com/962807">140byt.es Master gist</a></li>
+           <li><a href="https://github.com/jed/140bytes/wiki/Byte-saving-techniques">Byte-Saving Techniques</a></li>
+           <li><a href="https://github.com/jed/140bytes/wiki/Wishlist">Wishlist</a></li>
+           <li><a href="http://twitter.com/140bytes">140byt.es on Twitter</a></li>
+         </ul>
+       </div>
+     </div>
+    </script>
+  
+    <script id="user" type="text/template">
+      <div id="user">
+        <a href="javascript:history.back();" class="back">go back</a>
+        <h2>#{this.login}</h2>
+        <img src="#{this.avatar_url}" width="80" height="80">
+        <h3>Entries (#{this.entries.length})</h3>
+        <ul class="entries">
+        #{this.entries.map(templates.entryItem).join("")}
+        </ul>
+      </div>
+    </script>  
+
+    <script id="entryItem" type="text/template">
+      <li>
+        <h3>
+          <a href="/users/#{this.author}" class="author">#{this.author}</a>
+          <a href="https://gist.github.com/#{this.id}" class="name">#{this.name}</a>
+          <span class="codelength">(#{this.code.length} bytes)</span>
+        </h3>
+
+        <p class="description">#{this.description}</p>
+        <p class="keywords">Filed under: #{this.keywords.join(", ")}</p>
+
+        <ul class="views">
+          <li id="tab_index_#{this.id}" class="active">default</li>
+          <li id="tab_annotated_#{this.id}">annotated</li>
+          <!-- <li id="tab_readme_#{this.id}">readme</li> -->
+          <li id="tab_test_#{this.id}">test</li>
+        </ul>
+
+        <ul class="panes">
+          <li id="pane_index_#{this.id}" class="active">
+            <pre>#{jsprepare(this.code)}</pre>
+          </li>
+          <li id="pane_annotated_#{this.id}"></li>
+          <!-- <li id="pane_readme_#{this.id}"></li> -->
+          <li id="pane_test_#{this.id}"></li>
+        </ul>
+
+        <ul class="actions">
+          <li><a href="https://gist.github.com/#{this.id}">see original gist</a></li>
+          <li><a href="https://github.com/inbox/new/#{this.author}">contact author</a></li>
+          <li><a href="https://twitter.com/intent/tweet?text=#{encodeURIComponent(this.code)}" class="tweet">tweet this</a></li>
+        </ul>
+      </li>
+    </script>  
+
+    <script id="keyword" type="text/template">
+            <div id="keyword">
+              <a href="javascript:history.back();" class="back">go back</a>
+        <h2>Entries tagged "#{this.keyword}"</h2>
+        <ul class="entries">
+        #{this.list.map(templates.entryItem).join("")}
+        </ul>
+            </div>
+    </script>  
+
+    <script id="keywordList" type="text/template">
+      <h2>Keywords</h2>
+      <ol>
+        #{this.map(templates.keywordListItem).join("")}
+      </ol>
+                        <span class="open" onclick="this.parentNode.className='open';">more</span><span class="close" onclick="this.parentNode.className='';">less</span>
+    </script>
+
+    <script id="userList" type="text/template">
+      <h2>140byt.es leaderboard</h2>
+      <ol>
+        #{this.map(templates.userListItem).join("")}
+      </ol>
+                        <span class="open" onclick="this.parentNode.className='open';">more</span><span class="close" onclick="this.parentNode.className='';">less</span>
+    </script>
+
+    <script id="keywordListItem" type="text/template">
+      <li class="kw-#{(kwno=-~window.kwno)}">
+        <a href="/keywords/#{this[0]}">#{this[0]}</a>
+        (#{this[1].length})
+      </li>
+    </script>
+
+    <script id="userListItem" type="text/template">
+      <li>
+        <img src="#{this.avatar_url}" width="80" height="80">
+        <a href="/users/#{this.login}">#{this.login}</a>
+        (#{this.entries.length})
+      </li>
+    </script>
+    
+    <script id="keywordLink" type="text/template">
+      <a href="/keywords/#{this}">#{this}</a>
+    </script>
+    
+    <script id="notFound" type="text/template">
+      <div>404: Not found</div>
+    </script>
+
+    <script>
+    !function(
+      jsonp,
+      route,
+      template,
+      nonscripts,
+      escapeHTML,
+      canvasrender,
+      jshighlight,
+      extractGist,
+      fragment
+    ){
+      var data = { templates: {}, helpers: { escape: escapeHTML } }
+        , logodata = ['canvas.width=200;canvas.height=32',[6,10],[8,10,11,10,11,16],[11,18,11,19,11,20],[23,10],[23,10.6,23,11.4,23,12],[23,18,33,18,33,12],[33,10],[33,12,33,18,33,20],[50,10],[43.6,10,43.6,20,50,20],[56.4,20,56.4,10,50,10],[67,6],[67,8,67,12,67,15],[67,22,77,22,77,15],[77,12,74,10,72,10],[69,10,68,10,67,10],[89,10],[89,11,89,12,89,13],[89,23,101,23,101,13],[101,13,101,12,101,10],[95,21],[95,22,95,23,95,26],[113,6],[113,8,113,10,113,12],[112.8,19.6,115,20.4,120,20],[115,10],[116,10,118,10,120,10],[132,20],[132,20.1,132.1,20,132,20],[154,14],[153,8,145,8,144,14],[144,21,150,20.2,154,20],[176,9],[165.8,8.6,166.6,12,166,12],[166,20],[176.2,20.6,175.4,18,176,18],'lineCap="round";strokeStyle="#fff";lineWidth=11;stroke();strokeStyle="#222";lineWidth=4.2;stroke()']
+        , jsre = /(?![\d\w]\s*)(\/[^\/\*][^\n\/]*\/[gi]*)|(".*?"|'.*?')|(\/\/.*?\n|\/\*[\x00-\xff\u00\uffff]*?\*\/)|(?:\b)(abstract|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with)(?:\b)|(?:\b)(Array|Boolean|Date|Function|Math|Number|Object|RegExp|String|document|window|arguments)(?:\b)|(\d[\d\.eE]*)|([\x28-\x2b\x2d\x3a-\x3f\x5b\x5d\x5e\x7b-\x7e]+|\x2f|(?=\D)\.(?=\D))/g;
+      
+      jsprepare=function(d){return jshighlight(d.replace(/(['"])(.*?)\1/g,function(f,q,s){return q+s.replace(/&/g,'&amp;')+q}),jsre)}
+
+      htmlprepare=function(d){return d;}
+      mdprepare=function(d){return d;}
+
+      nonscripts(function(val, name) {
+        data.templates[name] = template(val, data)
+      })
+
+      route([
+        /\/$/                , home,
+        /\/users\/([\w-]+)$/ , user,
+        /\/entries\/(\d+)$/  , entry,
+        /\/keywords\/(\w+)$/ , keyword,
+        /* 404 */            , notFound
+      ])
+      
+      document.onclick = function(e) {
+        e || (e = window.event)
+        
+        if (e.target.className == "tweet") {
+          window.open(e.target.href, "intent", "scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420")
+          return false
+        }
+      }
+      
+      function loaded() {
+        document.body.className = document.body.className.replace(/\b\s*loading\b/g,'');
+        
+        var logocanvas = document.getElementById('logo');
+        canvasrender(logocanvas, logodata);
+
+        var views = document.getElementsByTagName('ul'), v = views.length;
+        while (v--) {
+          if (views[v].className == 'views') {
+            views[v].onclick = function(e){
+              e = e || window.event;
+              
+              var tab = e.target || e.srcElement || this
+                , thisId = tab.id.split("_")[2]
+                , pane = document.getElementById(tab.id.replace(/^tab/, "pane"));
+                
+              if (!pane.innerHTML) {
+                pane.innerHTML = "<pre>loading...</pre>"
+                
+                jsonp(
+                  "https://api.github.com/gists/" + thisId + "?callback=",
+                  function(obj){ 
+                    var panes = pane.parentNode.getElementsByTagName('li'), p = panes.length, file, content;
+                    while (p--) {
+                      if (panes[p].innerHTML && panes[p].innerHTML != "<pre>loading...</pre>") { continue; }
+                      content = '<p class="unavailable">not available</p>'
+                      for (file in obj.data.files) {
+                        if (~file.toLowerCase().indexOf(panes[p].id.split('_')[1])) {
+                          content = false;
+                          var type = (/\.(\w+)$/.exec(file) || 0)[1];
+                          if (type == 'html') {
+                            panes[p].innerHTML = '';
+                            var i = document.createElement('iframe');
+                            panes[p].appendChild(i);
+                            i.contentWindow.document.open();
+                            i.contentWindow.document.write(obj.data.files[file].content.replace(/(<\/html>\s*|)$/, '<script>window.setTimeout(function(){parent.document.getElementById("'+panes[p].id+'").getElementsByTagName("iframe")[0].style.height=(20+Math.min(500,document.body.offsetHeight))+"px";},100)<\/script><\/html>'));
+                            i.contentWindow.document.close();
+                          } else if (type == 'js') {
+                            panes[p].innerHTML = '<pre>' + jsprepare(obj.data.files[file].content) + '</pre>';
+                          } else if (type == 'md') {
+                            panes[p].innerHTML = '<div class="md">' + mdprepare(obj.data.files[file].content) + '</div>';
+                          } else {
+                            panes[p].innerHTML = obj.data.files[file].content;
+                          }
+                        }
+                      }
+                      if (content) panes[p].innerHTML = content;
+                    }
+                  }
+                )
+              }
+
+              for (var i = tab.parentNode.childNodes.length; i--;) {
+                tab.parentNode.childNodes[i].className = ""
+                pane.parentNode.childNodes[i].className = ""
+              }
+
+              tab.className = 'active';
+              pane.className = 'active';
+            }
+          }
+        }
+      }
+       
+      function home() {
+        document.body.className += ' loading';
+
+        jsonp("/api/?callback=", function(obj){
+          obj.entries.map(function(entry) {
+            entry.keywords = entry.keywords.map(function(word, no) {
+              return "<a href=\"/keywords/" + word + "\">" + word + "</a>"
+            })
+          })
+
+          render(data.templates.home(obj))
+          loaded();
+        })
+      }
+      
+      function user(captures) {
+        var id = captures[1];
+
+        document.body.className += ' loading';
+
+        jsonp("/api/users/" + id + "?callback=", function(obj){
+          obj.entries.map(function(entry) {
+            entry.keywords = entry.keywords.map(function(word) {
+              return "<a href=\"/keywords/" + word + "\">" + word + "</a>"
+            })
+          })
+          render(data.templates.user(obj))
+          loaded();
+        })
+      }
+
+      function keyword(captures) {
+        var id = captures[1];
+        
+        document.body.className += ' loading';
+
+        jsonp("/api/keywords/" + id + "?callback=", function(obj){
+          render(data.templates.keyword({keyword: id, list: obj}))
+          loaded();
+        })
+      }
+      
+      function entry(captures) {
+        var id = captures[1]
+        
+        document.body.className += ' loading';
+
+        jsonp("https://api.github.com/gists/" + id + "?callback=", function(obj){
+          render(data.templates.entry(obj))
+          loaded();
+        })
+      }
+    
+      function notFound() {
+        render(data.templates.notFound())
+      }
+      
+      function render(html) {
+        document.body.innerHTML = data.templates.layout(html);
+        loaded();
+        
+        jsonp("/api/me?callback=", function(user){
+          document.getElementById("auth").innerHTML =
+            data.templates[user ? "logout" : "login"](user)
+        })
+      }
+    }(
+      function e(a,b,c,d){with(document)body.appendChild(createElement(d="script")).src=a+(c=d+(e.a=-~e.a));(a=window)[c]=function(d){a[c]=b(d)}},
+      function(a,b,c){function e(d){d=location.href;if(d!=c){for(b=0,c=d;(d=a[b++])&&!(d=d.exec(c));b++);a[b](d)}};e();setInterval(e,b||99)},
+      function(a,b){return function(c,d){return a.replace(/#{([^}]*)}/g,function(a,e){return Function("x","with(x)return "+e).call(c,d||b||{})})}},
+      function(a,b,c,d,e){for(b=document.getElementsByTagName(c="script"),d=0;e=b[d++];)e.src||/ipt$/.test(e.type||c)||a.call(e,e.innerHTML,e.id)},
+      function(a,b){a=(b=a.createElement("b")).appendChild(a.createTextNode(0));return function(c){a.nodeValue=c;return b.innerHTML}}(document),
+      function(a,b,c,d){a=a.getContext('2d');for(c in b)d=b[c],''+d===d?eval('with(a){'+d+'}'):a[d[2]?'bezierCurveTo':'moveTo'].apply(a,d)},
+      function(c,r){return c.replace(r,function(f,i){for(i=7;~i*!arguments[i--];);return i?'<t class=f'+i+'>'+f.replace('<','&lt;')+'</t>':''})},
+      function(a,b,c,d){with(d=document)body.appendChild(createElement("script")).src=a,c=write,d.write=function(e){a?a=0:d.write=(b(e),c)}},
+      function(a,b,c){b=document;c=b.createElement("p");c.innerHTML=a;a=b.createDocumentFragment();while(b=c.firstChild)a.appendChild(b);return a},
+      [].map||(Array.prototype.map=function(a){for(var b=this,c=b.length,d=[],e=0,f;e<b;)d[e]=e in b?a.call(arguments[1],b[e],e++,b):f;return d})
+    )
+</script>
+</body>
+</html>

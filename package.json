@@ -1,0 +1,21 @@
+{
+  "author": "Jed Schmidt <tr@nslator.jp> (http://jed.is)",
+  "name": "140byt.es-site",
+  "description": "140byt.es",
+  "version": "0.0.0",
+  "homepage": "http://140byt.es",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jed/140bytes.git"
+  },
+  "dependencies": {
+    "request": "*",
+    "node-static": "*",
+    "cookies": "*",
+    "keygrip": "*",
+    "oauth": "*"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
