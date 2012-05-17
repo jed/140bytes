@@ -1,8 +1,8 @@
 {
   "author": "Jed Schmidt <tr@nslator.jp> (http://jed.is)",
-  "name": "140byt.es-site",
+  "name": "web-140bytes",
   "description": "140byt.es",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "http://140byt.es",
   "repository": {
     "type": "git",
@@ -16,6 +16,6 @@
     "oauth": "*"
   },
   "engines": {
-    "node": "0.6.18"
+    "node": "0.6.17"
   }
 }
