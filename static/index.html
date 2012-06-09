@@ -52,7 +52,7 @@ span.close:before { content: "▲ "; color: #fff; font-size: 80%; }
 .back:before { content: "◀ "; color: #fff; font-size: 80%; }
 
 .entries { margin: 0; padding: 0; list-style: none; }
-.entries > li { border: 1px solid #fff; background: #ddd; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; overflow-y: hidden; font-size: 90%; margin: 0 0 2em; max-width: 750px; }
+.entries > li { border: 1px solid #fff; background: #ddd; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; overflow-y: hidden; font-size: 90%; margin: 0 0 2em; max-width: 750px; column-break-inside: avoid; -webkit-column-break-inside: avoid; -moz-column-break-inside: avoid; -ms-column-break-inside: avoid; -o-column-break-inside: avoid; }
 .entries h3 { font-size: inherit; margin: 0 0 5px 0; padding: 5px; background: #fff; font-weight: 400; }
 .entries .name { font-weight: 700; text-decoration: none; }
 .entries .author { float: right; }
